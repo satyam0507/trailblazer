@@ -1,25 +1,60 @@
 
-<section class="main-section">
-   <div class="col-xs-12 col-md-10 col-md-offset-1">
+<section class="main-section" >
+   <div class="col-xs-12 col-md-10 col-md-offset-1" >
+        <div class="row card msg m-y-1">
+           <p class="p-a-3">
+                        Success
+                    </p>
+       </div>
+       <div class="card row m-y-1 ">
+           <div class="card-block">
+               <div class="card-title">
+                  <h3> Apply Now</h3>
+               </div>
+           </div>
+       </div>
+      
        <div class="card row">
-                <form action="#" class="col-xs-12 col-md-8 col-md-offset-2">
+           <div class="card-block">
+               <div class="card-text p-y-1">
+                <form action="#" class="col-xs-12 col-md-6 col-md-offset-3">
 
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label col-xs-12">
                     <input class="mdl-textfield__input" type="text" id="name" pattern="[A-Z,a-z, ]*">
-                    <label class="mdl-textfield__label" for="name">Name..</label>
+                    <label class="mdl-textfield__label" for="name">* Name..</label>
                     <span class="mdl-textfield__error">Not a valid name!</span>
                 </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label col-xs-12">
-                    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="sample4" maxlength="10">
-                    <label class="mdl-textfield__label" for="sample4">MO. Number</label>
-                    <span class="mdl-textfield__error">Input is not a Valid Number!</span>
-                </div>
+                
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label col-xs-12">
                     <input class="mdl-textfield__input" type="email" id="email">
-                    <label class="mdl-textfield__label" for="email">Email</label>
+                    <label class="mdl-textfield__label" for="email">* Email</label>
                     <span class="mdl-textfield__error">Input is not a Valid Email</span>
                 </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label col-xs-12">
+                    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="mNo" maxlength="10">
+                    <label class="mdl-textfield__label" for="sample4">* MO. Number</label>
+                    <span class="mdl-textfield__error">Input is not a Valid Number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--file pull-xs-right col-xs-6">
+                    <input class="mdl-textfield__input" placeholder="Attach Resume" type="text" id="uploadFile" readonly/>
+                    <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+                    <i class="material-icons attach_file">attach_file</i><input type="file" id="uploadBtn">
+                    </div>
+                </div>
+                 <!--<progress class="progress" value="0" max="100" aria-describedby="example-caption-1"></progress>-->
+                <div class="p-y-1 col-xs-12 text-xs-center">
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect btn-lg" id="apply" type="button">
+                    Apply Now
+                </button>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect btn-lg" onclick="location.href='/applyNow'" type="button">
+                   Reset
+                </button>
+                </div>
                 </form>
+               </div>
+       </div>
        </div>
    </div>
 </section>
+<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+<script src="static/js/apply.js"></script>

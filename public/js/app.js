@@ -104,6 +104,10 @@ var sidemenu = function () {
 
 var sideMenu = new sidemenu();
 
+
+
+
+
 // $(function() {
 // // //    $('.nav-link-active').removeClass('nav-link-active'); 
 // //   vardocument.querySelector('nav a[href^="/' + location.pathname.split("/")[1] + '"]',function () {
