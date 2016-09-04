@@ -3,6 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 var firebase = require("firebase");
+var mail = require('./app/mail.js');
+var juice = require('juice');
 var app = express();
 app.use(bodyParser.json());
 var port = 9010;
@@ -23,21 +25,53 @@ app.use('/static', express.static(__dirname + '/public'));
 app.post('/setUser', function (req, res) {
     console.log(req.body);
     var email = req.body.email;
-    var key = email.replace(/[.$\[\]\/#]/g, ','); 
+    var key = email.replace(/[.$\[\]\/#]/g, ',');
     var dataToUpdate = {
         name: req.body.name,
         m_number: req.body.m_number
     }
-        const auth = firebase.auth();
-        auth.signInWithEmailAndPassword('trailblazerhrsolutions@gmail.com', 'utkarsh').then(function(success){
-                var user = auth.currentUser;
-             firebase.database().ref('application/' + key + '/').update(dataToUpdate);
-        res.send(true);
-        },function(err){
-            console.log(err);
+
+    const auth = firebase.auth();
+    auth.signInWithEmailAndPassword('trailblazerhrsolutions@gmail.com', 'utkarsh').then(function (success) {
+        var user = auth.currentUser;
+        firebase.database().ref('application/' + key + '/').update(dataToUpdate);
+        var dataUser = {
+            name: req.body.name
+        }
+        app.render('emailToUser', { layout: false, data: dataUser }, function (err, html) {
+            if (err) {
+                console.log('err in rendering the templet ' + err);
+            }
+            else {
+                var hbstemp = juice(html);
+                mail.send(email, 'test', hbstemp, app);
+            }
         })
-       
+        var dataHr = {
+            name: req.body.name,
+            email: email,
+            m_number: req.body.m_number
+        }
+        var dataToHr = {
+            userInfo:JSON.stringify(dataHr, null, 2)
+        }
+        app.render('emailTohr', { layout: false, data: dataToHr }, function (err, html) {
+            if (err) {
+                console.log('err in rendering the templet ' + err);
+            }
+            else {
+                var hbstemp = juice(html);
+                mail.send('infohrjobss@gmail.com', 'New Inquire Added', hbstemp, app);
+            }
+        })
+        res.send(true);
+    }, function (err) {
+        console.log(err);
+    })
+
 })
+
+
 app.get('/', function (req, res) {
     res.render('home');
 })
