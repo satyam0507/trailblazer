@@ -32,7 +32,7 @@ app.post('/setUser', function (req, res) {
     }
 
     const auth = firebase.auth();
-    auth.signInWithEmailAndPassword('trailblazerhrsolutions@gmail.com', 'utkarsh').then(function (success) {
+    auth.signInWithEmailAndPassword('trailblazerhrsolutions@gmail.com', '*****').then(function (success) {
         var user = auth.currentUser;
         firebase.database().ref('application/' + key + '/').update(dataToUpdate);
         var dataUser = {

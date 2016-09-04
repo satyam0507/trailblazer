@@ -17,7 +17,7 @@ module.exports = {
     requiresAuth: true,
     auth: {
         user: 'trailblazerhrsolutions@gmail.com',
-        pass: 'zxcvbnm@1230'
+        pass: '*******'
     }
 };
 
